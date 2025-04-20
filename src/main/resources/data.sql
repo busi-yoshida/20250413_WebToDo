@@ -15,3 +15,7 @@ VALUES
 INSERT INTO todos (todo, detail, created_at, updated_at) 
 VALUES 
 ('TestToDo', 'TestDetail', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+-- 認証テーブルへのダミーデータの追加
+INSERT INTO authentications (username, password) VALUES 
+('admin', '$2a$10$ZgIrF5dYtZCRhwtSE.X8e.L6Oz1yxXFpVCLZvyHi8DS13xBYQlSiS');
