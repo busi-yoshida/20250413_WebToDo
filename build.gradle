@@ -40,6 +40,11 @@ dependencies {
     testImplementation 'com.codeborne:selenide:7.2.3'
     // JUnit（テストフレームワーク）
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    // Spring Security(認証：ログイン機能)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // Spring Security(認可：ユーザー権限)
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 }
 
 tasks.named('test') {
