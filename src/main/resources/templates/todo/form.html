@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ToDoフォーム</title>
+</head>
+<body>
+	
+    <!-- タイトル：登録 or 編集 -->
+    <h2 th:if="${toDoForm.isNew}">新規ToDo登録</h2>
+    <h2 th:unless="${toDoForm.isNew}">ToDo編集</h2>
+    
+    <!-- アクション：登録 or 編集 -->
+    <form th:action="@{/todos/confirm}" th:object="${toDoForm}" method="get" enctype="multipart/form-data">
+        <!-- idは更新時に必要のため、hiddenで持つ -->
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{createdAt}">
+        <input type="hidden" th:field="*{updatedAt}">
+        <input type="hidden" th:field="*{isNew}">
+        
+	    <table>
+	        <tr>
+	            <th>ToDo</th>
+	            <td>
+	                <input type="text" th:field="*{todo}" size="47">
+	                <!-- todo用：バリデーションエラー表示 -->
+	                <span th:if="${#fields.hasErrors('todo')}" th:errors="*{todo}" style="color: red;">
+	                    エラーがあれば表示
+	                </span>
+	            </td>
+	        </tr>
+	        
+	        <tr>
+	            <th>詳細</th>
+	            <td>
+	                <textarea rows="5" cols="50" th:field="*{detail}"></textarea>
+	                <!-- 詳細用：バリデーションエラー表示 -->
+	                <span th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}" style="color: red;">
+	                    エラーがあれば表示
+	                </span>
+	            </td>
+	        </tr>
+	        
+<!--	        <tr>-->
+<!--	            <th>画像</th>-->
+<!--	            <td>-->
+<!--	                <input type="file" th:field="*{imageFile}">-->
+<!--	            </td>-->
+<!--	        </tr>-->
+	        
+	    </table>
+	    
+    <br>
+    <hr>
+        <input type="submit" value="確認画面へ">
+    </form>
+    <br>
+    
+    <a th:href="@{/todos}">戻る</a>
+</body>
+</html>
